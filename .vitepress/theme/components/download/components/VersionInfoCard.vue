@@ -4,25 +4,35 @@ import {getVerStatus} from "../versionStatus";
 import {useTranslation} from "../useTranslation";
 import {Icon} from "@iconify/vue";
 import Markdown from "../../Markdown.vue";
+import { computed } from 'vue'
 
 const props = defineProps<{
-  version: string
+  version: string,
+  productName?: string,
+  branch?: string
 }>()
 const { t } = useTranslation()
 
+function renderStatusText() {
+  const statusKey = getVerStatus(props.version).name
+  const raw = t.value('versionStatus.' + statusKey)
+  return raw.replaceAll('{productName}', props.productName || 'SurviveX')
+}
+
+const mcVersion = computed(() => {
+  if (props.productName === 'VerifyMC') return 'master'
+  return props.branch || props.version
+})
 </script>
 
 <template>
-
   <div :class="['dl-version-tag', getVerStatus(version).cssClass]">
     <Icon :icon="getVerStatus(version).icon" />
-    <Markdown class="md-description" :content="t('versionStatus.' + getVerStatus(version).name)" :unwrap="true" />
+    <Markdown class="md-description" :content="renderStatusText()" :unwrap="true" />
   </div>
-
 </template>
 
 <style scoped lang="scss">
-
 @use "../statusColors";
 
 .dl-version-tag {
@@ -58,4 +68,13 @@ const { t } = useTranslation()
   }
 }
 
+.branch-label {
+  background: var(--vp-c-bg-alt);
+  border-radius: 6px;
+  padding: 0.25em 0.75em;
+  font-size: 1em;
+  font-weight: 500;
+  color: var(--vp-c-brand-1);
+  margin-right: 1em;
+}
 </style>

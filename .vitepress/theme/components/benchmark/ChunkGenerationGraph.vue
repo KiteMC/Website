@@ -4,11 +4,11 @@ import { ref, onMounted } from 'vue';
 // Test environment details
 const environment = {
   seed: '4791817952625876078',
-  size: '2048 block radius, circular, using Chunky',
+  size: '2048 chunks, circular, using Chunky',
   cpu: 'i7-10750H',
   jvm: 'GraalVM 21',
   memory: '8GB',
-  leafCommit: '9db6bfb',
+  SurviveXCommit: '9db6bfb',
   paperCommit: 'a838a88',
   moonriseConfig: 'chunk-system:\n  gen-parallelism: \'true\'\n  io-threads: 12\n  worker-threads: 12'
 };
@@ -18,7 +18,7 @@ const generationData = [
   {
     name: 'World Generation',
     Paper: 517, // 8:37 in seconds
-    Leaf: 473,  // 7:53 in seconds
+    SurviveX: 473,  // 7:53 in seconds
     improvement: ((517 - 473) / 517 * 100).toFixed(1)
   }
 ];
@@ -27,7 +27,7 @@ const generationData = [
 const jvmFlags = `-Xms8192M -Xmx8192M --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20`;
 
 // Calculate maximum time value for scaling the chart
-const maxTime = Math.max(...generationData.map(d => Math.max(d.Paper, d.Leaf)));
+const maxTime = Math.max(...generationData.map(d => Math.max(d.Paper, d.SurviveX)));
 
 // Calculate the scale factor for bar heights (pixels per second)
 const scaleFactor = 200 / maxTime; // Aim for tallest bar to be about 200px 
@@ -49,7 +49,7 @@ const showImprovements = ref(false);
 const animatedValues = ref(
   generationData.map(data => ({
     Paper: 0,
-    Leaf: 0,
+    SurviveX: 0,
     improvement: 0
   }))
 );
@@ -62,7 +62,7 @@ function animateCounters() {
   
   const targets = generationData.map(data => ({
     Paper: data.Paper,
-    Leaf: data.Leaf,
+    SurviveX: data.SurviveX,
     improvement: parseFloat(data.improvement)
   }));
   
@@ -75,7 +75,7 @@ function animateCounters() {
     // Update values
     animatedValues.value = targets.map((target, i) => ({
       Paper: Math.round(target.Paper * progress),
-      Leaf: Math.round(target.Leaf * progress),
+      SurviveX: Math.round(target.SurviveX * progress),
       improvement: +(target.improvement * progress).toFixed(1)
     }));
     
@@ -86,7 +86,7 @@ function animateCounters() {
       // Set exact final values
       animatedValues.value = targets.map(target => ({
         Paper: target.Paper,
-        Leaf: target.Leaf,
+        SurviveX: target.SurviveX,
         improvement: target.improvement
       }));
     }
@@ -129,7 +129,7 @@ onMounted(() => {
           <span class="label">Seed:</span> {{ environment.seed }}
         </div>
         <div class="env-item">
-          <span class="label">Leaf Commit:</span> {{ environment.leafCommit }}
+          <span class="label">SurviveX Commit:</span> {{ environment.SurviveXCommit }}
         </div>
         <div class="env-item">
           <span class="label">Paper Commit:</span> {{ environment.paperCommit }}
@@ -179,13 +179,13 @@ onMounted(() => {
               >Paper</div>
             </div>
             
-            <!-- Leaf Bar -->
+            <!-- SurviveX Bar -->
             <div class="bar-container">
               <div class="bar-wrapper">
                 <div 
-                  class="bar leaf" 
+                  class="bar SurviveX" 
                   :style="{ 
-                    height: showBars ? `${data.Leaf * scaleFactor}px` : '0px',
+                    height: showBars ? `${data.SurviveX * scaleFactor}px` : '0px',
                     transitionDelay: `${dataIndex * 100 + 150}ms`
                   }"
                 ></div>
@@ -195,13 +195,13 @@ onMounted(() => {
                 :class="{ 'show': showNumbers }"
                 :style="{ transitionDelay: `${dataIndex * 100 + 300}ms` }"
               >
-                {{ formatTime(animatedValues[dataIndex].Leaf) }}
+                {{ formatTime(animatedValues[dataIndex].SurviveX) }}
               </div>
               <div 
                 class="bar-name"
                 :class="{ 'show': showNumbers }"
                 :style="{ transitionDelay: `${dataIndex * 100 + 350}ms` }"
-              >Leaf</div>
+              >SurviveX</div>
             </div>
           </div>
         </div>
@@ -221,7 +221,7 @@ onMounted(() => {
         </div>
         <div class="improvement-title">Chunk Generation Time Reduction</div>
         <div class="improvement-details">
-          Leaf ({{ formatTime(animatedValues[0].Leaf) }}) vs Paper ({{ formatTime(animatedValues[0].Paper) }})
+          SurviveX ({{ formatTime(animatedValues[0].SurviveX) }}) vs Paper ({{ formatTime(animatedValues[0].Paper) }})
         </div>
       </div>
     </div>
@@ -357,7 +357,7 @@ h4 {
   background-color: #3498db;
 }
 
-.bar.leaf {
+.bar.SurviveX {
   background-color: #78C287;
 }
 

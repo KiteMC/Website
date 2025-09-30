@@ -1,9 +1,9 @@
-# Leaf Website
+# KiteMC Website
 [![MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg?style=flat-square)](LICENSE)
 
-The repository of official Leaf website, powered by [VitePress](https://vitepress.dev/).
+The repository of official SurviveX website, powered by [VitePress](https://vitepress.dev/).
 
-Visit the website in https://www.leafmc.one/
+Visit the website in https://kitemc.com
 
 ## 📦 Development
 
@@ -19,7 +19,7 @@ Refer to [Getting started](https://vitepress.dev/guide/getting-started/) for mor
 * `pnpm vitepress dev` - Start the live-reloading local dev server.
 
 ## ⚖️ License
-Leaf website is licensed under [MIT](LICENSE). The documentations (e.g. `.md`, `.ts`, etc files under `pages/**/docs` folder) are licensed under [CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+KiteMC website is licensed under [MIT](LICENSE). The documentations (e.g. `.md`, `.ts`, etc files under `pages/**/docs` folder) are licensed under [CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 ## 📜 Credits
 - [PaperMC Docs](https://docs.papermc.io/paper)

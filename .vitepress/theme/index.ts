@@ -10,6 +10,7 @@ import { watch } from "vue";
 // Import the Vue components
 import EntityPerformanceGraph from "./components/benchmark/EntityPerformanceGraph.vue";
 import ChunkGenerationGraph from "./components/benchmark/ChunkGenerationGraph.vue";
+import Footer from "./components/Footer.vue";
 
 // Custom language switcher that preserves current path
 const LanguageSwitcher = {
@@ -86,6 +87,8 @@ export default {
     return h(DefaultTheme.Layout, null, {
       // Only need to add LanguageSwitcher to activate its setup function
       "nav-bar-content-before": () => h(LanguageSwitcher),
+      // Add custom footer
+      "doc-footer-before": () => h(Footer),
     });
   },
   enhanceApp({ app }) {
@@ -95,5 +98,6 @@ export default {
     // Register the Vue components
     app.component("entity-performance-graph", EntityPerformanceGraph);
     app.component("chunk-generation-graph", ChunkGenerationGraph);
+    app.component("Footer", Footer);
   },
 } satisfies Theme;

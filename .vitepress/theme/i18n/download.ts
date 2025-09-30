@@ -21,10 +21,10 @@ export const translations = {
       download: 'Download'
     },
     versionStatus: {
-      dead: 'This version of Leaf is **unsupported** and will not receive any bugfixes. **Use at your own risk!**',
-      eol: 'This version of Leaf is **end-of-life** and will only receive critical bugfixes from upstream. Update to latest version and gain better performance!',
-      stable: 'This version of Leaf is **actively maintained** and receives regular updates and bug fixes.',
-      dev: 'This version of Leaf is **experimental** and may contain unstable features or bugs. Not recommended for production use.'
+      dead: 'This version of {productName} is **unsupported** and will not receive any bugfixes. **Use at your own risk!**',
+      eol: 'This version of {productName} is **end-of-life** and will only receive critical bugfixes from upstream. Update to latest version and gain better performance!',
+      stable: 'This version of {productName} is **actively maintained** and receives regular updates and bug fixes.',
+      dev: 'This version of {productName} is **experimental** and may contain unstable features or bugs. Not recommended for production use.'
     },
     labels: {
       version: 'Minecraft Version',
@@ -42,7 +42,8 @@ export const translations = {
       history: 'Build History'
     },
     'old-download-page': 'Switch to old download page',
-    'new-download-page': 'Switch to new download page'
+    'new-download-page': 'Switch to new download page',
+    'build-history': 'Build History'
   },
   zh: {
     loading: {
@@ -66,10 +67,10 @@ export const translations = {
       download: '下载'
     },
     versionStatus: {
-      dead: '此版本的 Leaf 已**不受支持**，不会修复任何错误修复。**使用需自行承担风险！**',
-      eol: '此版本的 Leaf 已**停止积极维护**，只会从上游接收关键错误修复。请更新到最新版本以获得更好的性能！',
-      stable: '此版本的 Leaf **正在积极维护中**，会定期接收更新和错误修复。',
-      dev: '此版本的 Leaf 是**实验性**版本，可能包含不稳定功能或错误。不建议用于生产环境。'
+      dead: '此版本的 {productName} 已**不受支持**，不会修复任何错误修复。**使用需自行承担风险！**',
+      eol: '此版本的 {productName} 已**停止积极维护**，只会从上游接收关键错误修复。请更新到最新版本以获得更好的性能！',
+      stable: '此版本的 {productName} **正在积极维护中**，会定期接收更新和错误修复。',
+      dev: '此版本的 {productName} 是**实验性**版本，可能包含不稳定功能或错误。不建议用于生产环境。'
     },
     labels: {
       version: 'Minecraft 版本',
@@ -85,7 +86,10 @@ export const translations = {
     tabs: {
       download: '下载',
       history: '构建历史'
-    }
+    },
+    'old-download-page': '切换到旧下载页面',
+    'new-download-page': '切换到新下载页面',
+    'build-history': '构建历史'
   },
   de: {
     loading: {
@@ -109,10 +113,10 @@ export const translations = {
       download: 'Herunterladen'
     },
     versionStatus: {
-      dead: 'Diese Version von Leaf wird **nicht unterstützt** und erhält keine Fehlerbehebungen. **Verwendung auf eigene Gefahr!**',
-      eol: 'Diese Version von Leaf hat das **Ende des Lebenszyklus** erreicht und erhält nur noch kritische Fehlerbehebungen. Aktualisiere auf die neueste Version für bessere Leistung!',
-      stable: 'Diese Version von Leaf wird **aktiv gewartet** und erhält regelmäßige Updates und Fehlerbehebungen.',
-      dev: 'Diese Version von Leaf ist **experimentell** und kann instabile Funktionen oder Fehler enthalten. Nicht für den Produktionseinsatz empfohlen.'
+      dead: 'Diese Version von SurviveX wird **nicht unterstützt** und erhält keine Fehlerbehebungen. **Verwendung auf eigene Gefahr!**',
+      eol: 'Diese Version von SurviveX hat das **Ende des Lebenszyklus** erreicht und erhält nur noch kritische Fehlerbehebungen. Aktualisiere auf die neueste Version für bessere Leistung!',
+      stable: 'Diese Version von SurviveX wird **aktiv gewartet** und erhält regelmäßige Updates und Fehlerbehebungen.',
+      dev: 'Diese Version von SurviveX ist **experimentell** und kann instabile Funktionen oder Fehler enthalten. Nicht für den Produktionseinsatz empfohlen.'
     },
     labels: {
       version: 'Minecraft-Version',
@@ -128,7 +132,10 @@ export const translations = {
     tabs: {
       download: 'Herunterladen',
       history: 'Build-Verlauf'
-    }
+    },
+    'old-download-page': 'Zur alten Download-Seite wechseln',
+    'new-download-page': 'Zur neuen Download-Seite wechseln',
+    'build-history': 'Build-Verlauf'
   },
   ru: {
     loading: {
@@ -152,10 +159,10 @@ export const translations = {
       download: 'Скачать'
     },
     versionStatus: {
-      dead: 'Эта версия Leaf **не поддерживается** и не будет получать исправления ошибок. **Используйте на свой страх и риск!**',
-      eol: 'Эта версия Leaf **прекратила жизненный цикл** и будет получать только критические исправления ошибок. Обновитесь до последней версии для лучшей производительности!',
-      stable: 'Эта версия Leaf **активно поддерживается** и регулярно получает обновления и исправления ошибок.',
-      dev: 'Эта версия Leaf является **экспериментальной** и может содержать нестабильные функции или ошибки. Не рекомендуется для использования в производственной среде.'
+      dead: 'Эта версия SurviveX **не поддерживается** и не будет получать исправления ошибок. **Используйте на свой страх и риск!**',
+      eol: 'Эта версия SurviveX **прекратила жизненный цикл** и будет получать только критические исправления ошибок. Обновитесь до последней версии для лучшей производительности!',
+      stable: 'Эта версия SurviveX **активно поддерживается** и регулярно получает обновления и исправления ошибок.',
+      dev: 'Эта версия SurviveX является **экспериментальной** и может содержать нестабильные функции или ошибки. Не рекомендуется для использования в производственной среде.'
     },
     labels: {
       version: 'Версия Minecraft',
@@ -173,7 +180,8 @@ export const translations = {
       history: 'История сборок'
     },
     'old-download-page': 'Переключиться на старую страницу загрузки',
-    'new-download-page': 'Переключиться на новую страницу загрузки'
+    'new-download-page': 'Переключиться на новую страницу загрузки',
+    'build-history': 'История сборок'
   },
   pt: {
     loading: {
@@ -197,10 +205,10 @@ export const translations = {
       download: 'Baixar'
     },
     versionStatus: {
-      dead: 'Esta versão do Leaf **não é suportada** e não receberá correções de bugs. **Use por sua conta e risco!**',
-      eol: 'Esta versão do Leaf está em **fim de vida** e só receberá correções críticas de bugs. Atualize para a versão mais recente e ganhe melhor desempenho!',
-      stable: 'Esta versão do Leaf é **mantida ativamente** e recebe atualizações e correções de bugs regularmente.',
-      dev: 'Esta versão do Leaf é **experimental** e pode conter recursos instáveis ou bugs. Não recomendada para uso em produção.'
+      dead: 'Esta versão do SurviveX **não é suportada** e não receberá correções de bugs. **Use por sua conta e risco!**',
+      eol: 'Esta versão do SurviveX está em **fim de vida** e só receberá correções críticas de bugs. Atualize para a versão mais recente e ganhe melhor desempenho!',
+      stable: 'Esta versão do SurviveX é **mantida ativamente** e recebe atualizações e correções de bugs regularmente.',
+      dev: 'Esta versão do SurviveX é **experimental** e pode conter recursos instáveis ou bugs. Não recomendada para uso em produção.'
     },
     labels: {
       version: 'Versão do Minecraft',
@@ -216,16 +224,19 @@ export const translations = {
     tabs: {
       download: 'Baixar',
       history: 'Histórico de compilação'
-    }
+    },
+    'old-download-page': 'Mudar para página de download antiga',
+    'new-download-page': 'Mudar para página de download nova',
+    'build-history': 'Histórico de compilação'
   },
-tr: {
+  tr: {
     loading: {
       versions: 'Kullanılabilir versiyonlar yükleniyor...',
       download: 'İndirme dosyaları aranıyor...',
       builds: 'Build geçmişi yükleniyor...'
     },
     error: {
-      versions: 'GitHub’dan branch’ler yüklenemedi. Lütfen daha sonra tekrar deneyin.',
+      versions: 'GitHub\'dan branch\'ler yüklenemedi. Lütfen daha sonra tekrar deneyin.',
       download: 'Bu versiyon için indirme bulunamadı.',
       builds: 'Build geçmişi bulunamadı.'
     },
@@ -234,16 +245,16 @@ tr: {
       refresh: 'Yenile',
       showMore: 'Daha Fazla Göster',
       showLess: 'Daha Az Göster',
-      viewOnGitHub: 'GitHub’da Görüntüle',
-      viewRelease: 'GitHub’da release’i görüntüle',
-      viewBranch: 'Bu branch’i GitHub’da görüntüle',
+      viewOnGitHub: 'GitHub\'da Görüntüle',
+      viewRelease: 'GitHub\'da release\'i görüntüle',
+      viewBranch: 'Bu branch\'i GitHub\'da görüntüle',
       download: 'İndir'
     },
     versionStatus: {
-      dead: 'Bu Leaf versiyonu **desteklenmiyor** ve hiçbir bugfix almayacak. **Kendi riskinizle kullanın!**',
-      eol: 'Bu Leaf versiyonu **end-of-life** durumunda ve sadece kritik bugfix’ler alacak. En son versiyona güncelleyin, daha iyi performans elde edin!',
-      stable: 'Bu Leaf versiyonu **aktif olarak destekleniyor** ve düzenli update’ler ile bugfix’ler alıyor.',
-      dev: 'Bu Leaf versiyonu **deneysel**dir ve kararsız özellikler ya da bug’lar içerebilir. Production kullanımı için önerilmez.'
+      dead: 'Bu SurviveX versiyonu **desteklenmiyor** ve hiçbir bugfix almayacak. **Kendi riskinizle kullanın!**',
+      eol: 'Bu SurviveX versiyonu **end-of-life** durumunda ve sadece kritik bugfix\'ler alacak. En son versiyona güncelleyin, daha iyi performans elde edin!',
+      stable: 'Bu SurviveX versiyonu **aktif olarak destekleniyor** ve düzenli update\'ler ile bugfix\'ler alıyor.',
+      dev: 'Bu SurviveX versiyonu **deneysel**dir ve kararsız özellikler ya da bug\'lar içerebilir. Production kullanımı için önerilmez.'
     },
     labels: {
       version: 'Minecraft Versiyonu',
@@ -251,7 +262,7 @@ tr: {
       buildHistory: 'Build Geçmişi',
       date: 'Tarih',
       commit: 'Commit',
-      action: 'Action’ı Görüntüle',
+      action: 'Action\'ı Görüntüle',
       unknown: 'Bilinmiyor',
       releaseNotes: 'Release Notları',
       description: 'Yüksek performanslı Minecraft sunucu yazılımı'
@@ -259,6 +270,9 @@ tr: {
     tabs: {
       download: 'İndir',
       history: 'Build Geçmişi'
-    }
+    },
+    'old-download-page': 'Eski indirme sayfasına geç',
+    'new-download-page': 'Yeni indirme sayfasına geç',
+    'build-history': 'Build Geçmişi'
   }
 };

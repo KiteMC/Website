@@ -7,7 +7,8 @@ import {useTranslation} from "../useTranslation";
 
 const props = defineProps<{
   selectedVersion: string,
-  versions: string[]
+  versions: string[],
+  disabled?: boolean
 }>()
 const { t } = useTranslation()
 
@@ -15,8 +16,14 @@ const emit = defineEmits(['update:selectedVersion'])
 const dropdownOpen = ref(false)
 
 const selectVersion = (version: string) => {
+  if (props.disabled) return
   emit('update:selectedVersion', version)
   dropdownOpen.value = false
+}
+
+const toggleDropdown = () => {
+  if (props.disabled) return
+  dropdownOpen.value = !dropdownOpen.value
 }
 
 const dropdownRef = ref<HTMLElement | null>(null);
@@ -42,20 +49,23 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
 
       <div
           class="dl-custom-select"
-          @click="dropdownOpen = !dropdownOpen"
-          :class="selectedVersion ? getVerStatus(selectedVersion).cssClass : ''"
+          @click="toggleDropdown"
+          :class="[
+            selectedVersion ? getVerStatus(selectedVersion).cssClass : '',
+            { 'disabled': disabled }
+          ]"
       >
         <div class="dl-selected-version">
           <span class="dl-version-status-indicator"></span>
           <span>{{ selectedVersion }}</span>
         </div>
-        <div class="dl-select-icon">
+        <div class="dl-select-icon" v-if="!disabled">
           <Icon icon="lucide:chevron-down" :class="{ 'rotate': dropdownOpen }" />
         </div>
       </div>
 
       <transition name="fade">
-        <div class="dl-dropdown-options" v-show="dropdownOpen">
+        <div class="dl-dropdown-options" v-show="dropdownOpen && !disabled">
           <div
               v-for="version in versions"
               :key="version"
@@ -114,9 +124,20 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
   color: var(--vp-c-text-1);
   cursor: pointer;
   transition: var(--vp-anim-dur) ease-in-out;
+  
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+    background-color: var(--vp-c-bg-mute);
+    
+    &:hover {
+      border-color: var(--status-color-1);
+      box-shadow: none;
+    }
+  }
 }
 
-.dl-custom-select:hover {
+.dl-custom-select:hover:not(.disabled) {
   border-color: var(--status-color-1);
   box-shadow: 0 0 0 1px var(--status-color-soft);
 }

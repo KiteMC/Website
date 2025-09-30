@@ -5,24 +5,24 @@ import { ref, onMounted } from 'vue';
 const performanceData = [
   {
     name: 'Default Config',
-    Leaf: 2.8,
+    SurviveX: 2.8,
     Paper: 3.7,
-    LeafAsync: null, // No async data for this scenario
-    leafImprovement: ((3.7 - 2.8) / 3.7 * 100).toFixed(1)
+    SurviveXAsync: null, // No async data for this scenario
+    SurviveXImprovement: ((3.7 - 2.8) / 3.7 * 100).toFixed(1)
   },
   {
     name: 'Increased Mob Caps',
-    Leaf: 5.8,
+    SurviveX: 5.8,
     Paper: 8.1,
-    LeafAsync: 4.5,
-    leafImprovement: ((8.1 - 5.8) / 8.1 * 100).toFixed(1),
+    SurviveXAsync: 4.5,
+    SurviveXImprovement: ((8.1 - 5.8) / 8.1 * 100).toFixed(1),
     asyncImprovement: ((8.1 - 4.5) / 8.1 * 100).toFixed(1)
   }
 ];
 
 // Environment details
 const environment = {
-  leafCommit: '9db6bfb',
+  SurviveXCommit: '9db6bfb',
   paperCommit: 'a838a88',
   seed: '2618050634530417871',
   coords: '183.5 67.00 -201.5',
@@ -37,7 +37,7 @@ const jvmFlags = `-Xms6144M -Xmx6144M --add-modules=jdk.incubator.vector -XX:+Us
 
 // Calculate maximum MSPT value for scaling
 const maxMspt = Math.max(
-  ...performanceData.map(d => Math.max(d.Paper, d.Leaf, d.LeafAsync || 0))
+  ...performanceData.map(d => Math.max(d.Paper, d.SurviveX, d.SurviveXAsync || 0))
 );
 
 // Calculate the scale factor for bar heights (pixels per mspt)
@@ -54,9 +54,9 @@ const showImprovements = ref(false);
 const animatedValues = ref(
   performanceData.map(data => ({
     Paper: 0,
-    Leaf: 0,
-    LeafAsync: data.LeafAsync ? 0 : null,
-    leafImprovement: 0,
+    SurviveX: 0,
+    SurviveXAsync: data.SurviveXAsync ? 0 : null,
+    SurviveXImprovement: 0,
     asyncImprovement: data.asyncImprovement ? 0 : null
   }))
 );
@@ -70,9 +70,9 @@ function animateCounters() {
   // Clone target values
   const targets = performanceData.map(data => ({
     Paper: data.Paper,
-    Leaf: data.Leaf,
-    LeafAsync: data.LeafAsync,
-    leafImprovement: parseFloat(data.leafImprovement),
+    SurviveX: data.SurviveX,
+    SurviveXAsync: data.SurviveXAsync,
+    SurviveXImprovement: parseFloat(data.SurviveXImprovement),
     asyncImprovement: data.asyncImprovement ? parseFloat(data.asyncImprovement) : null
   }));
   
@@ -85,9 +85,9 @@ function animateCounters() {
     // Update values
     animatedValues.value = targets.map((target, i) => ({
       Paper: +(target.Paper * progress).toFixed(1),
-      Leaf: +(target.Leaf * progress).toFixed(1),
-      LeafAsync: target.LeafAsync ? +(target.LeafAsync * progress).toFixed(1) : null,
-      leafImprovement: +(target.leafImprovement * progress).toFixed(1),
+      SurviveX: +(target.SurviveX * progress).toFixed(1),
+      SurviveXAsync: target.SurviveXAsync ? +(target.SurviveXAsync * progress).toFixed(1) : null,
+      SurviveXImprovement: +(target.SurviveXImprovement * progress).toFixed(1),
       asyncImprovement: target.asyncImprovement ? +(target.asyncImprovement * progress).toFixed(1) : null
     }));
     
@@ -98,9 +98,9 @@ function animateCounters() {
       // Set exact final values
       animatedValues.value = targets.map(target => ({
         Paper: +target.Paper.toFixed(1),
-        Leaf: +target.Leaf.toFixed(1),
-        LeafAsync: target.LeafAsync ? +target.LeafAsync.toFixed(1) : null,
-        leafImprovement: +target.leafImprovement.toFixed(1),
+        SurviveX: +target.SurviveX.toFixed(1),
+        SurviveXAsync: target.SurviveXAsync ? +target.SurviveXAsync.toFixed(1) : null,
+        SurviveXImprovement: +target.SurviveXImprovement.toFixed(1),
         asyncImprovement: target.asyncImprovement ? +target.asyncImprovement.toFixed(1) : null
       }));
     }
@@ -140,7 +140,7 @@ onMounted(() => {
           <span class="label">Memory:</span> {{ environment.memory }}
         </div>
         <div class="env-item">
-          <span class="label">Leaf Commit:</span> {{ environment.leafCommit }}
+          <span class="label">SurviveX Commit:</span> {{ environment.SurviveXCommit }}
         </div>
         <div class="env-item">
           <span class="label">Paper Commit:</span> {{ environment.paperCommit }}
@@ -191,13 +191,13 @@ onMounted(() => {
               >Paper</div>
             </div>
             
-            <!-- Leaf Bar -->
+            <!-- SurviveX Bar -->
             <div class="bar-container">
               <div class="bar-wrapper">
                 <div 
-                  class="bar leaf" 
+                  class="bar SurviveX" 
                   :style="{ 
-                    height: showBars ? `${data.Leaf * scaleFactor}px` : '0px',
+                    height: showBars ? `${data.SurviveX * scaleFactor}px` : '0px',
                     transitionDelay: `${dataIndex * 100 + 150}ms`
                   }"
                 ></div>
@@ -207,22 +207,22 @@ onMounted(() => {
                 :class="{ 'show': showNumbers }"
                 :style="{ transitionDelay: `${dataIndex * 100 + 300}ms` }"
               >
-                {{ animatedValues[dataIndex].Leaf }} mspt
+                {{ animatedValues[dataIndex].SurviveX }} mspt
               </div>
               <div 
                 class="bar-name"
                 :class="{ 'show': showNumbers }"
                 :style="{ transitionDelay: `${dataIndex * 100 + 350}ms` }"
-              >Leaf</div>
+              >SurviveX</div>
             </div>
             
-            <!-- Leaf+Async Bar (when available) -->
-            <div v-if="data.LeafAsync" class="bar-container">
+            <!-- SurviveX+Async Bar (when available) -->
+            <div v-if="data.SurviveXAsync" class="bar-container">
               <div class="bar-wrapper">
                 <div 
-                  class="bar leaf-async" 
+                  class="bar SurviveX-async" 
                   :style="{ 
-                    height: showBars ? `${data.LeafAsync * scaleFactor}px` : '0px',
+                    height: showBars ? `${data.SurviveXAsync * scaleFactor}px` : '0px',
                     transitionDelay: `${dataIndex * 100 + 300}ms`
                   }"
                 ></div>
@@ -232,13 +232,13 @@ onMounted(() => {
                 :class="{ 'show': showNumbers }"
                 :style="{ transitionDelay: `${dataIndex * 100 + 400}ms` }"
               >
-                {{ animatedValues[dataIndex].LeafAsync }} mspt
+                {{ animatedValues[dataIndex].SurviveXAsync }} mspt
               </div>
               <div 
                 class="bar-name"
                 :class="{ 'show': showNumbers }"
                 :style="{ transitionDelay: `${dataIndex * 100 + 450}ms` }"
-              >Leaf+Async</div>
+              >SurviveX+Async</div>
             </div>
           </div>
         </div>
@@ -255,11 +255,11 @@ onMounted(() => {
         :style="{ animationDelay: '0ms' }"
       >
         <div class="improvement-percentage counter">
-          {{ animatedValues[0].leafImprovement }}%
+          {{ animatedValues[0].SurviveXImprovement }}%
         </div>
         <div class="improvement-title">Default Configuration</div>
         <div class="improvement-details">
-          Leaf ({{ animatedValues[0].Leaf }} mspt) vs Paper ({{ animatedValues[0].Paper }} mspt)
+          SurviveX ({{ animatedValues[0].SurviveX }} mspt) vs Paper ({{ animatedValues[0].Paper }} mspt)
         </div>
       </div>
       
@@ -270,11 +270,11 @@ onMounted(() => {
         :style="{ animationDelay: '200ms' }"
       >
         <div class="improvement-percentage counter">
-          {{ animatedValues[1].leafImprovement }}%
+          {{ animatedValues[1].SurviveXImprovement }}%
         </div>
-        <div class="improvement-title">Leaf with Increased Mob Caps</div>
+        <div class="improvement-title">SurviveX with Increased Mob Caps</div>
         <div class="improvement-details">
-          Leaf ({{ animatedValues[1].Leaf }} mspt) vs Paper ({{ animatedValues[1].Paper }} mspt)
+          SurviveX ({{ animatedValues[1].SurviveX }} mspt) vs Paper ({{ animatedValues[1].Paper }} mspt)
         </div>
       </div>
       
@@ -287,9 +287,9 @@ onMounted(() => {
         <div class="improvement-percentage counter">
           {{ animatedValues[1].asyncImprovement }}%
         </div>
-        <div class="improvement-title">Leaf+Async with Increased Mob Caps</div>
+        <div class="improvement-title">SurviveX+Async with Increased Mob Caps</div>
         <div class="improvement-details">
-          Leaf+Async ({{ animatedValues[1].LeafAsync }} mspt) vs Paper ({{ animatedValues[1].Paper }} mspt)
+          SurviveX+Async ({{ animatedValues[1].SurviveXAsync }} mspt) vs Paper ({{ animatedValues[1].Paper }} mspt)
         </div>
       </div>
     </div>
@@ -414,11 +414,11 @@ h4 {
   background-color: #3498db;
 }
 
-.bar.leaf {
+.bar.SurviveX {
   background-color: #78C287;
 }
 
-.bar.leaf-async {
+.bar.SurviveX-async {
   background-color: #49B858;
   border: 1px solid #2c8038;
 }

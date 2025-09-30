@@ -33,7 +33,7 @@ const { t } = useTranslation();
 const { lang } = useData();
 
 // Store the selected version in session storage to persist across language changes
-const SESSION_STORAGE_KEY = 'leaf-selected-version';
+const SESSION_STORAGE_KEY = 'SurviveX-selected-version';
 
 // Format file size
 const formatFileSize = (bytes: number) => {
@@ -59,7 +59,7 @@ function loadVersions() {
   isLoadingVersions.value = true;
   versionError.value = false;
   
-  fetch('https://api.github.com/repos/Winds-Studio/Leaf/branches?per_page=100') // Fetch branches up to 100, default is 30 
+  fetch('https://api.github.com/repos/Winds-Studio/SurviveX/branches')
     .then(resp => {
       if (!resp.ok) throw new Error(`GitHub API request failed with status ${resp.status}`);
       return resp.json();
@@ -110,7 +110,7 @@ function loadDownload(version: Version) {
   releaseData.value = null;
   
   // Special handling for dev branch release
-  const apiUrl = `https://api.github.com/repos/Winds-Studio/Leaf/releases/tags/ver-${version.name}`
+  const apiUrl = `https://api.github.com/repos/Winds-Studio/SurviveX/releases/tags/ver-${version.name}`
   
   fetch(apiUrl)
     .then(resp => {
@@ -144,7 +144,7 @@ function loadBuildHistory(version: Version) {
   const branchName = version.branch;
   const branchVersion = version.name.replaceAll(".", "");
 
-  fetch(`https://api.github.com/repos/Winds-Studio/Leaf/actions/workflows/build-${branchVersion}.yml/runs?event=push&branch=${branchName}`)
+  fetch(`https://api.github.com/repos/Winds-Studio/SurviveX/actions/workflows/build-${branchVersion}.yml/runs?event=push&branch=${branchName}`)
     .then(resp => resp.json())
     .then(data => {
       if (data.workflow_runs) {
@@ -268,7 +268,7 @@ watch(selectedVersion, refreshVersionInfo)
       <!-- Header -->
       <div class="dl-header">
         <div class="dl-header-content">
-          <h1>Leaf</h1>
+          <h1>SurviveX</h1>
           <p class="dl-subtitle">{{ t('labels.description') }}</p>
         </div>
       </div>
@@ -350,7 +350,7 @@ watch(selectedVersion, refreshVersionInfo)
               <span>{{ t('actions.retry') }}</span>
             </button>
             <a 
-              :href="`https://github.com/Winds-Studio/Leaf/releases/tag/ver-${selectedVersion.name}`"
+              :href="`https://github.com/KiteMC/SurviveX/releases/tag/ver-${selectedVersion.name}`"
               target="_blank" 
               class="dl-button secondary"
             >
@@ -367,7 +367,7 @@ watch(selectedVersion, refreshVersionInfo)
             <div class="dl-card-content">
               <div class="dl-release-info">
                 <h2 class="dl-release-title">
-                  {{ releaseData.name || `Leaf ${selectedVersion}` }}
+                  {{ releaseData.name || `SurviveX ${selectedVersion}` }}
                 </h2>
                 <div class="dl-release-meta">
                   <div class="dl-meta-item">
@@ -391,7 +391,7 @@ watch(selectedVersion, refreshVersionInfo)
                   <span>{{ t('actions.download') }}</span>
                 </a>
                 <a 
-                  :href="`https://github.com/Winds-Studio/Leaf/releases/tag/ver-${selectedVersion.name}`"
+                  :href="`https://github.com/KiteMC/SurviveX/releases/tag/ver-${selectedVersion.name}`"
                   target="_blank"
                   class="dl-button secondary"
                 >
@@ -432,7 +432,7 @@ watch(selectedVersion, refreshVersionInfo)
           <Icon icon="lucide:info" />
           <h3>{{ t('error.builds') }}</h3>
           <a 
-            :href="`https://github.com/Winds-Studio/Leaf/tree/ver/${selectedVersion}`" 
+            :href="`https://github.com/KiteMC/SurviveX/tree/ver/${selectedVersion}`" 
             target="_blank"
             class="dl-link"
           >
@@ -456,7 +456,7 @@ watch(selectedVersion, refreshVersionInfo)
                     <Icon icon="lucide:git-commit" />
                     <a 
                       v-if="run.head_commit" 
-                      :href="`https://github.com/Winds-Studio/Leaf/commit/${run.head_commit.id}`" 
+                      :href="`https://github.com/KiteMC/SurviveX/commit/${run.head_commit.id}`" 
                       target="_blank"
                       class="dl-link"
                     >

@@ -31,12 +31,12 @@ const loaded = ref(false);
 const websiteLoaded = ref(false);
 
 const titleCreator = (<LangString>{
-  en: "Creator of Leaf",
-  tr: "Leaf'in Yaratıcısı",
-  de: "Schöpfer von Leaf",
-  pt: "Criador do Leaf",
-  ru: "Создатель Leaf",
-  zh: "Leaf 的创建者"
+  en: "Creator of SurviveX",
+  tr: "SurviveX'in Yaratıcısı",
+  de: "Schöpfer von SurviveX",
+  pt: "Criador do SurviveX",
+  ru: "Создатель SurviveX",
+  zh: "SurviveX 的创建者"
 })[props.lang];
 const titleCoreTeam = (<LangString>{
   en: "Core team",
@@ -54,22 +54,12 @@ const titleWebDev = (<LangString>{
   ru: "Дизайнер и Веб-разработчик",
   zh: "设计师兼网页开发"
 })[props.lang];
-const titleSpecial = (<LangString>{
-  en: "Special Supporter",
-  tr: "Özel Destekçi",
-  de: "Besonderer Unterstützer",
-  pt: "Apoiante Especial",
-  ru: "Особый поддерживающий",
-  zh: "特别支持者"
-})[props.lang];
 
 const rewrites = {
   "Dreeam-qwq": { title: titleCreator },
   "HaHaWTH": { name: "Creeam (HaHaWTH)", title: titleCoreTeam },
-  //"Taiyou06": { title: titleCoreTeam },
+  "Taiyou06": { title: titleCoreTeam },
   "hayanesuru": { title: titleCoreTeam },
-  "MartijnMuijsers": { title: titleCoreTeam },
-  "Pascalpex": { title: titleSpecial },
   "envizar": {
     title: titleWebDev,
     links: [{ icon: "telegram", link: 'https://t.me/envizar' }]
@@ -120,32 +110,16 @@ const allMembers = computed(() => {
 });
 
 // Fetch main repo contributors
-fetch("https://api.github.com/repos/Winds-Studio/Leaf/contributors")
-  .then(resp => resp.json())
-  .then(data => {
-    // TODO: find a solution to avoid rate limit
-    if (Array.isArray(data)) {
-      members.value = data.filter(m => m.type == "User").map(transform)
-    } else {
-      console.warn(`Unexpected response: ${JSON.stringify(data)}`);
-      members.value = [];
-    }
-  })
-  .finally(() => loaded.value = true);
+fetch("https://api.github.com/repos/Winds-Studio/SurviveX/contributors")
+    .then(resp => resp.json())
+    .then(data => members.value = data.map(transform))
+    .finally(() => loaded.value = true);
 
 // Fetch website repo contributors
-fetch("https://api.github.com/repos/Winds-Studio/Leaf-website/contributors")
-  .then(resp => resp.json())
-  .then(data => {
-    // TODO: find a solution to avoid rate limit
-    if (Array.isArray(data)) {
-      websiteMembers.value = data.filter(m => m.type == "User").map(transform)
-    } else {
-      console.warn(`Unexpected response: ${JSON.stringify(data)}`);
-      websiteMembers.value = [];
-    }
-  })
-  .finally(() => websiteLoaded.value = true);
+fetch("https://api.github.com/repos/Winds-Studio/SurviveX-website/contributors")
+    .then(resp => resp.json())
+    .then(data => websiteMembers.value = data.map(transformWebsite))
+    .finally(() => websiteLoaded.value = true);
 </script>
 
 <template>

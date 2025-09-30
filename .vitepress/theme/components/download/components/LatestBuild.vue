@@ -6,6 +6,10 @@ import {useTranslation} from "../useTranslation";
 const props = defineProps<{
   build: ApiBuild
   version: string
+  logoUrl?: string
+  productName?: string
+  owner?: string
+  repo?: string
 }>()
 
 const { t } = useTranslation()
@@ -15,11 +19,13 @@ const { t } = useTranslation()
 <template>
   <div class="container">
 
-    <div class="logo">
+    <div class="logo" :style="logoUrl ? { '--logo-url': `url('${logoUrl}')` } : {}">
       {{ build.build }}
     </div>
 
-    <a class="download-button brand-button" :href="getBuildLink(version, build)">{{t('actions.download')}} Leaf {{version}}</a>
+    <a class="download-button brand-button" :href="getBuildLink(version, build, owner, repo)">
+      {{t('actions.download')}} {{productName || 'SurviveX'}} {{version}} #{{build.build}}
+    </a>
 
   </div>
 </template>
@@ -66,7 +72,7 @@ const { t } = useTranslation()
     &::before {
       content: "";
       position: absolute;
-      background: url("/logo.svg") no-repeat center;
+      background: var(--logo-url, url("https://kite.cn-nb1.rains3.com/logo.svg")) no-repeat center;
       background-size: 6rem;
       opacity: 0.2;
       filter: blur(2px);
